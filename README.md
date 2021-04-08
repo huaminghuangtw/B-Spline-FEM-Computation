@@ -33,8 +33,9 @@ In the **install** folder, you can play around with:
   - Git Bash
   
     ![gitbash_test](figures/gitbash_test.png)
-  - Visual Studio  
-    Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Debug" > select "Start New Instance"  
+  - Visual Studio
+    * Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Debug" > select "Start New Instance"
+    * Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Set as StartUp Project" > click `F5`
 - python scripts
   ```python
   python plotBSplineBasis.py
