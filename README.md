@@ -12,7 +12,7 @@ B-Spline-FEM-Computation
    
    ![cmake](figures/cmake.png)
 3. Open project solution file (in this case **splinecomputation.sln**)
-4. Go to Solution Explorer, right-click on "INSTALL", choose "build"  
+4. Go to Solution Explorer > right-click on "INSTALL" > select "build"  
 
    ![install](figures/install.png)
 5. A new folder called "install" will be generated under your build folder
@@ -33,6 +33,8 @@ In the **install** folder, you can play around with:
   - Git Bash
   
     ![gitbash_test](figures/gitbash_test.png)
+  - Visual Studio  
+    Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Debug" > select "Start New Instance"  
 - python scripts
   ```python
   python plotBSplineBasis.py
