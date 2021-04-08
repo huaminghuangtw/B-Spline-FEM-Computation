@@ -6,15 +6,18 @@ B-Spline-FEM-Computation
 ---
 
 ## Setup
-1. Recursively clone this project to your machine: `git clone --recursive git@github.com:hmhuang0501/B-Spline-FEM-Computation.git`
+1. Recursively clone this project to your machine: `git clone --recursive https://github.com/hmhuang0501/B-Spline-FEM-Computation.git`
 2. Use Cmake to build/generate project files corresponding to your preferred complier/IDE, e.g., Visual Studio 2019  
    (Remember to tick the "PYBIND11_INSTALL" box, otherwise there will be "ImportError: DLL not found" message)  
+   
    ![cmake](figures/cmake.png)
 3. Open project solution file (in this case **splinecomputation.sln**)
 4. Go to Solution Explorer, right-click on "INSTALL", choose "build"  
+
    ![install](figures/install.png)
 5. A new folder called "install" will be generated under your build folder
-6. After this step you can go to the "install" folder and run the _splinekernel testrunner_ or _any python scripts_  
+6. After this step you can go to the "install" folder and run the _splinekernel testrunner_ or _any python scripts_
+
    ![installfolder](figures/installfolder.png)
 
 ---
