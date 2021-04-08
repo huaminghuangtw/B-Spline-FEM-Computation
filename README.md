@@ -27,9 +27,11 @@ B-Spline-FEM-Computation
 In the **install** folder, you can play around with:
 
 - splinekernel testrunner
-  - CMD  
+  - CMD
+  
     ![cmd_test](figures/cmd_test.png)
-  - Git Bash  
+  - Git Bash
+  
     ![gitbash_test](figures/gitbash_test.png)
 - python scripts
   ```python
