@@ -25,7 +25,7 @@ std::array<double, 2> mapToGlobalCoordinates( std::array<double, 2> localCoordin
     {
         runtime_check(numberOfElements[axis] > 0, "number of elements cannot be zero!");
         
-		double elementLength = lengths[axis] / numberOfElements[axis];
+        double elementLength = lengths[axis] / numberOfElements[axis];
 
         globalCoordinates[axis] = ( ((localCoordinates[axis] + 1) / 2 + elementIndices[axis])
                                     * elementLength ) + origin[axis];
@@ -50,33 +50,33 @@ KnotVectors constructOpenKnotVectors( std::array<size_t, 2> numberOfElements,
         
         // outer knots (k = p + 1)
         for (size_t iKnot = 0; iKnot <= polynomialDegrees[axis]; ++iKnot)
-		{
+        {
             openKnotVector[axis].push_back(origin[axis]);
 
-		} // for iKnot
+        } // for iKnot
 
         // inner knots (k = p - c)
         for (size_t iElement = 1; iElement < numberOfElements[axis]; ++iElement)   // No.2 ~ No.(N-1) element
-		{
-			double elementWidth = lengths[axis] / numberOfElements[axis];
-			double internalKnot = iElement * elementWidth + origin[axis];
+        {
+            double elementWidth = lengths[axis] / numberOfElements[axis];
+            double internalKnot = iElement * elementWidth + origin[axis];
 
-			size_t numberOfRepetitions = polynomialDegrees[axis] - continuities[axis];
+            size_t numberOfRepetitions = polynomialDegrees[axis] - continuities[axis];
 
-			for (size_t iKnot = 0; iKnot < numberOfRepetitions; ++iKnot)
-			{
+            for (size_t iKnot = 0; iKnot < numberOfRepetitions; ++iKnot)
+            {
                 openKnotVector[axis].push_back(internalKnot);
 
-			} // for iKnot
-		} // for iElement
+            } // for iKnot
+        } // for iElement
 
-		// outer knots (k = p + 1)
+        // outer knots (k = p + 1)
         for (size_t iKnot = 0; iKnot <= polynomialDegrees[axis]; ++iKnot)
-		{
+        {
             openKnotVector[axis].push_back(origin[axis] + lengths[axis]);
 
-		} // for iKnot
-	} // for axis
+        } // for iKnot
+    } // for axis
 
     return openKnotVector;
 }
@@ -127,12 +127,12 @@ LocationMaps constructLocationMaps( std::array<size_t, 2> numberOfElements,
             {
                 for (size_t localJ = 0; localJ < polynomialDegrees[1] + 1; ++localJ)
                 {                    
-					size_t strideX = polynomialDegrees[0] - continuities[0];  // i.e., #inner knots = p - c
-					size_t strideY = polynomialDegrees[1] - continuities[1];
+                    size_t strideX = polynomialDegrees[0] - continuities[0];  // i.e., #inner knots = p - c
+                    size_t strideY = polynomialDegrees[1] - continuities[1];
 
-					size_t overlappingY = continuities[1] + 1;
+                    size_t overlappingY = continuities[1] + 1;
 
-					size_t numberOfGlobalY = (numberOfElements[1] * strideY) + overlappingY;
+                    size_t numberOfGlobalY = (numberOfElements[1] * strideY) + overlappingY;
                     
                     size_t globalI = localI + ( iElement * strideX );
                     size_t globalJ = localJ + ( jElement * strideY );
@@ -177,26 +177,26 @@ std::vector<double> BSplineFiniteElementPatch::evaluateActiveBasisAt( std::array
     size_t iElement = detail::findKnotSpan(origin_[0], origin_[0] + lengths_[0], numberOfElements_[0], globalCoordinates[0]);
     size_t jElement = detail::findKnotSpan(origin_[1], origin_[1] + lengths_[1], numberOfElements_[1], globalCoordinates[1]);
 
-	size_t index0 = iElement * (polynomialDegrees_[0] - continuities_[0]);   // first basis function with support on iElement (See ppt "Knots&KnotSpans&BasisFunctionSupport")
-	size_t index1 = jElement * (polynomialDegrees_[1] - continuities_[1]);   // first basis function with support on jElement
+    size_t index0 = iElement * (polynomialDegrees_[0] - continuities_[0]);   // first basis function with support on iElement (See ppt "Knots&KnotSpans&BasisFunctionSupport")
+    size_t index1 = jElement * (polynomialDegrees_[1] - continuities_[1]);   // first basis function with support on jElement
     
     size_t px = polynomialDegrees_[0];
-	size_t py = polynomialDegrees_[1];
+    size_t py = polynomialDegrees_[1];
 
     std::vector<double> activeBasis;
     activeBasis.reserve( (px + 1) * (py + 1) );   // optional, to increase efficiency
     // std::vector<double> activeBasis( (px + 1) * (py + 1), 0.0 );
 
     for (size_t i = 0; i < px + 1; ++i)
-	{
-		for (size_t j = 0; j < py + 1; ++j)
-		{
+    {
+        for (size_t j = 0; j < py + 1; ++j)
+        {
             double Bx = evaluateBSplineDerivative(globalCoordinates[0], index0 + i, px, knotVectors_[0], diffOrders[0]);
-			double By = evaluateBSplineDerivative(globalCoordinates[1], index1 + j, py, knotVectors_[1], diffOrders[1]);
+            double By = evaluateBSplineDerivative(globalCoordinates[1], index1 + j, py, knotVectors_[1], diffOrders[1]);
             activeBasis.push_back( Bx * By );
             // activeBasis[i * (py + 1) + j] = Bx * By;
         }
-	}
+    }
 
     return activeBasis;
 }
@@ -238,7 +238,7 @@ ElementLinearSystem BSplineFiniteElementPatch::integrateElementSystem( std::arra
             auto dNdx = evaluateActiveBasisAt( globalCoordinates, { 1,0 } );
             auto dNdy = evaluateActiveBasisAt( globalCoordinates, { 0,1 } );
 
-			double detJ = (1.0 / 4) * (lengths_[0] / numberOfElements_[0]) * (lengths_[1] / numberOfElements_[1]);
+            double detJ = (1.0 / 4) * (lengths_[0] / numberOfElements_[0]) * (lengths_[1] / numberOfElements_[1]);
             // or double detJ = ((float)1 / 4) * (lengths_[0] / numberOfElements_[0]) * (lengths_[1] / numberOfElements_[1]);
             // or double detJ = (lengths_[0] / numberOfElements_[0]) * (lengths_[1] / numberOfElements_[1]) / 4.0;
             // Do not write (1 / 4) * (lengths_[0] / numberOfElements_[0]) * (lengths_[1] / numberOfElements_[1]);
@@ -283,7 +283,7 @@ GlobalLinearSystem BSplineFiniteElementPatch::assembleGlobalSystem(const Spatial
             for (size_t iDof = 0; iDof < locationMap.size(); ++iDof)
             {
                 globalVector[locationMap[iDof]] += elementSystem.second[iDof];
-				// globalVector[locationMap[i]] += std::get<1>(elementSystem)[i];
+                // globalVector[locationMap[i]] += std::get<1>(elementSystem)[i];
             }
         }
     }
@@ -309,25 +309,25 @@ std::vector<size_t> BSplineFiniteElementPatch::boundaryDofIds(const std::string&
     }
     else if ( side == "right" )
     {
-		for (size_t globalJ = 0; globalJ < numberOfDofsY; ++globalJ)
-		{
+        for (size_t globalJ = 0; globalJ < numberOfDofsY; ++globalJ)
+        {
             boundaryDofIds.push_back( (numberOfDofsX - 1) * numberOfDofsY + globalJ );
-		}
+        }
     }
-	else if ( side == "bottom" )
-	{
-		for (size_t globalI = 0; globalI < numberOfDofsX; ++globalI)
-		{
+    else if ( side == "bottom" )
+    {
+        for (size_t globalI = 0; globalI < numberOfDofsX; ++globalI)
+        {
             boundaryDofIds.push_back( globalI * numberOfDofsY );
-		}
-	}
-	else if ( side == "left" )
-	{
-		for (size_t globalJ = 0; globalJ < numberOfDofsY; ++globalJ)
-		{
+        }
+    }
+    else if ( side == "left" )
+    {
+        for (size_t globalJ = 0; globalJ < numberOfDofsY; ++globalJ)
+        {
             boundaryDofIds.push_back( globalJ );
-		}
-	}
+        }
+    }
     else
     {
         throw std::runtime_error("Invalid side string.");
@@ -343,22 +343,22 @@ SpatialFunction BSplineFiniteElementPatch::solutionEvaluator(const std::vector<d
     {
         std::vector<double> N = evaluateActiveBasisAt( { x, y }, { 0, 0 } );
 
-	    size_t elementIdxI = detail::findKnotSpan(origin_[0], origin_[0] + lengths_[0], numberOfElements_[0], x);
-	    size_t elementIdxJ = detail::findKnotSpan(origin_[1], origin_[1] + lengths_[1], numberOfElements_[1], y);
-	    
+        size_t elementIdxI = detail::findKnotSpan(origin_[0], origin_[0] + lengths_[0], numberOfElements_[0], x);
+        size_t elementIdxJ = detail::findKnotSpan(origin_[1], origin_[1] + lengths_[1], numberOfElements_[1], y);
+        
         const LocationMap& locationMap = locationMaps_[elementIdxI * numberOfElements_[1] + elementIdxJ];
-	    
+        
         double value = 0.0;
 
-	    for (size_t iDof = 0; iDof < locationMap.size(); ++iDof)
-	    {
+        for (size_t iDof = 0; iDof < locationMap.size(); ++iDof)
+        {
             // basis.size(), i.e., (polynomialDegrees_[0] + 1) * (polynomialDegrees_[1] + 1)
             // is equal to
             // locationMap.size()
             value += N[iDof] * solutionDofs[locationMap[iDof]];
-	    }
+        }
 
-	    return value;
+        return value;
     };
 }
 

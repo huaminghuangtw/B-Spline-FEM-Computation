@@ -67,32 +67,32 @@ TEST_CASE( "SparseMatrix_simpleSizeAndNnz_test" )
 
 TEST_CASE("SparseMatrix_simpleElementAccess_test")
 {
-	auto matrix = simpleTestMatrix();
+    auto matrix = simpleTestMatrix();
 
-	double* data = std::get<2>(matrix.dataStructure());
+    double* data = std::get<2>(matrix.dataStructure());
 
-	std::iota(data, data + 13, 0.5);
+    std::iota(data, data + 13, 0.5);
 
-	std::vector<double> expectedValues
-	{
-		0.5,  1.5,  0.0,  0.0,  0.0,
-		2.5,  3.5,  4.5,  0.0,  5.5,
-		0.0,  6.5,  7.5,  8.5,  0.0,
-		0.0,  0.0,  9.5, 10.5,  0.0,
-		0.0, 11.5,  0.0,  0.0, 12.5
-	};
+    std::vector<double> expectedValues
+    {
+        0.5,  1.5,  0.0,  0.0,  0.0,
+        2.5,  3.5,  4.5,  0.0,  5.5,
+        0.0,  6.5,  7.5,  8.5,  0.0,
+        0.0,  0.0,  9.5, 10.5,  0.0,
+        0.0, 11.5,  0.0,  0.0, 12.5
+    };
 
-	for (size_t i = 0; i < 5; ++i)
-	{
-		for (size_t j = 0; j < 5; ++j)
-		{
-			CHECK(matrix(i, j) == Approx(expectedValues[i * 5 + j]));
-		}
-	}
+    for (size_t i = 0; i < 5; ++i)
+    {
+        for (size_t j = 0; j < 5; ++j)
+        {
+            CHECK(matrix(i, j) == Approx(expectedValues[i * 5 + j]));
+        }
+    }
 
-	REQUIRE_THROWS(matrix(5, 0));
-	REQUIRE_THROWS(matrix(0, 5));
-	REQUIRE_THROWS(matrix(5, 5));
+    REQUIRE_THROWS(matrix(5, 0));
+    REQUIRE_THROWS(matrix(0, 5));
+    REQUIRE_THROWS(matrix(5, 5));
 }
 
 TEST_CASE( "SparseMatrix_simpleMultiplication_test" )

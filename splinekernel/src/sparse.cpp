@@ -148,28 +148,28 @@ double CompressedSparseRowMatrix::operator( )( size_t i, size_t j ) const
     }
     else
     {
-		return 0.0;  // zero value
+        return 0.0;  // zero value
     }
 }
 
 std::vector<double> CompressedSparseRowMatrix::operator*( const std::vector<double>& vector )
 {
-	runtime_check( vector.size() == this->size(),
-		           "Invalid RHS size." );
+    runtime_check( vector.size() == this->size(),
+                   "Invalid RHS size." );
 
-	size_t numberOfRows = this->size();
+    size_t numberOfRows = this->size();
 
-	std::vector<double> result(numberOfRows, 0.0);
+    std::vector<double> result(numberOfRows, 0.0);
 
-	for (size_t i = 0; i < numberOfRows; ++i)
-	{
-		for (size_t j = indptr_[i]; j < indptr_[i + 1]; ++j)
-		{
-			result[i] += data_[j] * vector[indices_[j]];
-		}
-	}
+    for (size_t i = 0; i < numberOfRows; ++i)
+    {
+        for (size_t j = indptr_[i]; j < indptr_[i + 1]; ++j)
+        {
+            result[i] += data_[j] * vector[indices_[j]];
+        }
+    }
 
-	return result;
+    return result;
 }
 
 void CompressedSparseRowMatrix::scatter( const linalg::Matrix& elementMatrix, const LocationMap& locationMap )
@@ -182,21 +182,21 @@ void CompressedSparseRowMatrix::scatter( const linalg::Matrix& elementMatrix, co
     {
         for (size_t localJ = 0; localJ < elementMatrix.size2(); ++localJ)
         {       
-			size_t globalI = locationMap[localI];
-			size_t globalJ = locationMap[localJ];
+            size_t globalI = locationMap[localI];
+            size_t globalJ = locationMap[localJ];
 
             auto begin = indices_.begin() + indptr_[globalI];
             auto end = indices_.begin() + indptr_[globalI + 1];
 
             /*auto Idx = std::find( begin, end, globalJ );
 
-			runtime_check( Idx != end, "Entry not present in sparsity pattern." );*/
+            runtime_check( Idx != end, "Entry not present in sparsity pattern." );*/
 
-			auto Idx = std::lower_bound( begin, end, globalJ );
+            auto Idx = std::lower_bound( begin, end, globalJ );
 
-			runtime_check( Idx != end && *Idx == globalJ, "Entry not present in sparsity pattern.");
+            runtime_check( Idx != end && *Idx == globalJ, "Entry not present in sparsity pattern.");
 
-			data_[ Idx - indices_.begin() ] += elementMatrix(localI, localJ);
+            data_[ Idx - indices_.begin() ] += elementMatrix(localI, localJ);
             // data_[ std::distance( indices_.begin(), Idx ) ] += elementMatrix(i, j);
         }
     }
