@@ -6,19 +6,16 @@ B-Spline-FEM-Computation
 ---
 
 ### Setup
-1. Recursively clone this project to your machine: `git clone --recursive https://github.com/hmhuang0501/B-Spline-FEM-Computation.git`
+1. Recursively clone this project to your machine: `git clone --recursive https://github.com/hmhuang0501/B-Spline-FEM-Computation.git`  
 2. Use Cmake to build/generate project files corresponding to your preferred complier/IDE, e.g., Visual Studio 2019  
-   (Remember to tick the "PYBIND11_INSTALL" box, otherwise there will be "ImportError: DLL not found" message)  
-   
-   ![cmake](figures/cmake.png)
-3. Open project solution file (in this case **splinecomputation.sln**)
-4. Go to Solution Explorer > right-click on "INSTALL" > select "build"  
-
-   ![install](figures/install.png)
-5. A new folder called "install" will be generated under your build folder
-6. After this step you can go to the "install" folder and run the _splinekernel testrunner_ or _any python scripts_
-
-   ![installfolder](figures/installfolder.png)
+   (Remember to tick the `PYBIND11_INSTALL` box, otherwise there will be `ImportError: DLL not found` message)  
+   <img align="left" width="500" src="figures/cmake.png"><br clear="all" />
+3. Open project solution file (in this case `splinecomputation.sln`)  
+4. Go to Solution Explorer > Right-click on `INSTALL` > Select `build`  
+   <img align="left" width="250" src="figures/install.png"><br clear="all" />
+5. A new folder called `install` will be generated under your build folder  
+6. After this step you can go to the `install` folder and run the _splinekernel testrunner_ or _any python scripts_  
+   <img align="left" width="550" src="figures/installfolder.png"><br clear="all" />
 
 ---
 
@@ -27,40 +24,38 @@ B-Spline-FEM-Computation
 In the **install** folder, you can play around with:
 
 - splinekernel testrunner
-  - CMD
-  
-    ![cmd_test](figures/cmd_test.png)
-  - Git Bash
-  
-    ![gitbash_test](figures/gitbash_test.png)
+  - CMD  
+    <img align="left" width="600" src="figures/cmd_test.png"><br clear="all" />
+  - Git Bash  
+    <img align="left" width="600" src="figures/gitbash_test.png"><br clear="all" />
   - Visual Studio
-    * Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Debug" > select "Start New Instance"
-    * Go to Solution Explorer > right-click on "splinekernel_testrunner" > select "Set as StartUp Project" > click `F5`
+    * Go to Solution Explorer > Right-click on `splinekernel_testrunner` > Select `Debug` > Select `Start New Instance`
+    * Go to Solution Explorer > Right-click on `splinekernel_testrunner` > Select `Set as StartUp Project` > Click `F5`
 - python scripts
   ```python
   python plotBSplineBasis.py
-  ``` 
-  ![plotBSplineBasis.py](figures/plotBSplineBasis.py.png)  
+  ```
+  <img align="left" width="400" src="figures/plotBSplineBasis.py.png"><br clear="all" />
   
   ```python
   python plotBSplineCurve.py
   ```
-  ![plotBSplineCurve.py](figures/plotBSplineCurve.py.png)  
+  <img align="left" width="400" src="figures/plotBSplineCurve.py.png"><br clear="all" />
   
   ```python
   python plotBSplineBasis2D.py
   ```
-  ![plotBSplineBasis2D.py](figures/plotBSplineBasis2D.py.png)  
+  <img align="left" width="400" src="figures/plotBSplineBasis2D.py.png"><br clear="all" />
   
   ```python
   python plotBSplineSurface.py
   ```
-  ![plotBSplineSurface.py](figures/plotBSplineSurface.py.png)  
+  <img align="left" width="400" src="figures/plotBSplineSurface.py.png"><br clear="all" />
   
   ```python
   python laplaceProblem.py
   ```
-  ![laplaceProblem.py](figures/laplaceProblem.py.png)  
+  <img align="left" width="400" src="figures/laplaceProblem.py.png"><br clear="all" />
 
 ---
 
