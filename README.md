@@ -3,8 +3,6 @@ B-Spline-FEM-Computation
 
 > FE code that discretizes a two-dimensional Poisson’s equation using B-Spline basis functions.
 
----
-
 ### Setup
 1. Recursively clone this project to your machine: `git clone --recursive https://github.com/hmhuang0501/B-Spline-FEM-Computation.git`  
 2. Use Cmake to build/generate project files corresponding to your preferred complier/IDE, e.g., Visual Studio 2019  
@@ -66,4 +64,4 @@ In the **install** folder, you could play around with:
 ---
 
 ### Contact
-If you have any question or suggestion, feel free to contact me at huaming.huang.tw@gmail.com. Contributions are also welcomed. Please open a [pull-request](https://github.com/hmhuang0501/B-Spline-FEM-Computation/compare) or an [issue](https://github.com/hmhuang0501/B-Spline-FEM-Computation/issues/new) in this repository.
+If you have any question or suggestion, feel free to contact me at huaming.huang.tw@gmail.com. Contributions are also welcomed. Please open a [pull-request](https://github.com/huaminghuangtw/B-Spline-FEM-Computation/compare) or an [issue](https://github.com/huaminghuangtw/B-Spline-FEM-Computation/issues/new) in this repository.
